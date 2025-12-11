@@ -7,7 +7,6 @@
 body { font-family: Arial; padding: 20px; }
 input { padding: 6px; }
 button { padding: 6px 10px; margin-left: 4px; }
-li button { margin-left: 10px; }
 </style>
 </head>
 <body>
@@ -16,6 +15,7 @@ li button { margin-left: 10px; }
 
 <input id="text" type="text" placeholder="Wpisz coś...">
 <button onclick="addItem()">Dodaj</button>
+<button onclick="removeItem()">Usuń</button>
 
 
 <ul id="lista"></ul>
@@ -30,18 +30,16 @@ if (value === '') return;
 
 const li = document.createElement('li');
 li.textContent = value;
-
-
-const delBtn = document.createElement('button');
-delBtn.textContent = 'Usuń';
-delBtn.onclick = () => li.remove();
-
-
-li.appendChild(delBtn);
 document.getElementById('lista').appendChild(li);
 
 
 input.value = '';
+}
+
+
+function removeItem() {
+const list = document.getElementById('lista');
+if (list.lastChild) list.removeChild(list.lastChild);
 }
 </script>
 </body>
