@@ -1,59 +1,39 @@
-<!doctype html>
-   <html lang="pl">
-   <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Zadanie 3</title>
-     <style>
-       body { font-family: system-ui, sans-serif; }
-       #app { max-width: 520px; margin: 24px auto; }
-       ul { list-style: none; padding: 0; }
-       li { display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid #ddd; border-radius: 6px; margin: 8px 0; }
-       button { cursor: pointer; }
-       .remove { color: #b00020; border: none; background: transparent; font-size: 18px; line-height: 1; }
-     </style>
-   </head>
-   <body>
-     <main id="app">
-       <h1>Moja lista</h1>
-       <div>
-         <input id="item-input" type="text" placeholder="Wpisz element..." />
-         <button id="add-btn">Dodaj</button>
-       </div>
-       <ul id="list"></ul>
-     </main>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<title>Prosta lista</title>
+<style>
+body { font-family: Arial; padding: 20px; }
+input { padding: 6px; }
+button { padding: 6px 10px; }
+</style>
+</head>
+<body>
+<h2>Moja lista</h2>
 
-     <script>
-       const input = document.getElementById('item-input');
-       const addBtn = document.getElementById('add-btn');
-       const list = document.getElementById('list');
-       function createItem(text) {
-         const li = document.createElement('li');
-         const span = document.createElement('span');
-         span.textContent = text;
-         const removeBtn = document.createElement('button');
-         removeBtn.className = 'remove';
-         removeBtn.title = 'Usuń';
-         removeBtn.textContent = '×'; 
 
-         removeBtn.addEventListener('click', () => {
-           li.remove(); 
-         });
+<input id="text" type="text" placeholder="Wpisz coś...">
+<button onclick="addItem()">Dodaj</button>
 
-         li.append(span, removeBtn);
-         return li;
-       }
 
-       addBtn.addEventListener('click', () => {
-         const value = input.value.trim();
-         if (!value) return; // nic nie dodawaj, gdy puste
-         const item = createItem(value);
-         list.appendChild(item);
-         input.value = '';
-         input.focus();
-       });
+<ul id="lista"></ul>
 
-       
-     </script>
-   </body>
-   </html>
+
+<script>
+function addItem() {
+const input = document.getElementById('text');
+const value = input.value.trim();
+if (value === '') return;
+
+
+const li = document.createElement('li');
+li.textContent = value;
+document.getElementById('lista').appendChild(li);
+
+
+input.value = '';
+}
+</script>
+</body>
+</html>
