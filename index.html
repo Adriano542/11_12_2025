@@ -4,42 +4,40 @@
 <meta charset="UTF-8" />
 <title>Prosta lista</title>
 <style>
-body { font-family: Arial; padding: 20px; }
-input { padding: 6px; }
-button { padding: 6px 10px; margin-left: 4px; }
+  body { font-family: Arial; padding: 20px; }
+  input { padding: 6px; }
+  button { padding: 6px 10px; margin-left: 4px; }
 </style>
 </head>
 <body>
-<h2>Moja lista</h2>
+  <h2>Moja lista</h2>
+  <input id="text" type="text" placeholder="Wpisz coś...">
+  <button onclick="addItem()">Dodaj</button>
+  <button onclick="removeItem()">Usuń</button>
+  
+  <ul id="lista"></ul>
 
-
-<input id="text" type="text" placeholder="Wpisz coś...">
-<button onclick="addItem()">Dodaj</button>
-<button onclick="removeItem()">Usuń</button>
-
-
-<ul id="lista"></ul>
-
-
-<script>
-function addItem() {
-const input = document.getElementById('text');
-const value = input.value.trim();
-if (value === '') return;
-
-
-const li = document.createElement('li');
-li.textContent = value;
-document.getElementById('lista').appendChild(li);
-
-
-input.value = '';
+  <script>
+    function addItem() {
+      const input = document.getElementById('text');
+      const value = input.value.trim();
+      if (value === '') return;
+      const li = document.createElement('li');
+      li.textContent = value + ' ';
+      
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Usuń';
+      delBtn.onclick = () => li.remove();
+      li.appendChild(delBtn);
+      document.getElementById('lista').appendChild(li);
+      
+      input.value = '';
 }
 
 
 function removeItem() {
-const list = document.getElementById('lista');
-if (list.lastChild) list.removeChild(list.lastChild);
+  const list = document.getElementById('lista');
+  if (list.lastChild) list.removeChild(list.lastChild);
 }
 </script>
 </body>
